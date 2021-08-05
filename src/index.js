@@ -20,8 +20,8 @@ console.log('After State' , store.getState());
 */
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App store={store} />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App store={store}/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );

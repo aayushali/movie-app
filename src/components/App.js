@@ -6,8 +6,8 @@ import {addMovies} from "../actions";
 
 class App extends React.Component {
     componentDidMount() {
-        const { store } = this.props ;
-        store.subscribe(()=> {
+        const {store} = this.props;
+        store.subscribe(() => {
             console.log('Updated');
             this.forceUpdate();
         })
@@ -17,6 +17,13 @@ class App extends React.Component {
         console.log('State', this.props.store.getState());
 
 
+    }
+
+    isMovieFavourite = (movie) => {
+        const {favourites} = this.props.store.getState();
+
+        const index = favourites.indexOf(movie);
+        return index !== -1;
 
     }
 
@@ -38,11 +45,14 @@ class App extends React.Component {
                     </div>
                     <div className="list">
                         {list.map((movie, index) => (
-                            <MovieCard movie={movie} key={`movies-${index}`}/>))}
+                            <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.store.dispatch}
+                                       isFavourite={this.isMovieFavourite(movie)}
+                            />))}
                     </div>
                 </div>
             </div>
         );
     }
 }
+
 export default App;
